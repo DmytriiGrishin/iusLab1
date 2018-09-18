@@ -24,8 +24,13 @@ unsigned char left_circular_shift(unsigned char x, int n) {
 unsigned char right_circular_shift(unsigned char x, int n) {
   return (x >> n) | (x << (8 - n));
 }
+
+unsigned char invert(unsigned char c) {
+  return 255-c;
+}
+
 unsigned char read_dip() {
-    return read_max(EXT_LO);
+    return invert( read_max(EXT_LO));
 }
 
 void main( void ) {
@@ -34,7 +39,7 @@ void main( void ) {
     unsigned char leds_var = 0;
     unsigned char dip = 0;
     while( 1 ) {
-        delay(20);
+        delay(100);
         dip = read_dip();
         if (dip == 0x11) {
             leds_var = left_leds | right_leds;
