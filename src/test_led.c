@@ -10,13 +10,6 @@ void delay ( unsigned long ms ) {
     }   
 }
 
-unsigned char binary_from_string(char* s) {
-  unsigned char result = 0;
-  signed char i;
-  for (i = 0; i < 8; ++i)
-      result |= (s[i] == '1') << (7 - i);
-  return result; 
-}
 
 unsigned char left_circular_shift(unsigned char x, int n) {
   return (x << n) | (x >> (8 - n));
@@ -34,8 +27,10 @@ unsigned char read_dip() {
 }
 
 void main( void ) {
-    unsigned char left_leds = binary_from_string("11000000");
-    unsigned char right_leds = binary_from_string("00000001");
+    const unsigned char left_leds_init = 0xC0;
+    const unsigned char right_leds_init = 0x01;
+    unsigned char left_leds = left_leds_init;
+    unsigned char right_leds = right_leds_init ;
     unsigned char leds_var = 0;
     unsigned char dip = 0;
     while( 1 ) {
@@ -46,8 +41,8 @@ void main( void ) {
             left_leds = right_circular_shift(left_leds, 1);
             right_leds = left_circular_shift(right_leds, 1);
         } else {
-            left_leds = binary_from_string("11000000");
-            right_leds = binary_from_string("00000001");
+            left_leds = left_leds_init;
+            right_leds = right_leds_init;
             leds_var = dip;
         }
         leds(leds_var);
