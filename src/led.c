@@ -1,7 +1,8 @@
 #include "aduc812.h"
 #include "max.h"
 
-static unsigned char old_led = 0;   // "Видеопамять" линейки светодиодов
+
+static unsigned char old_led = 0;
 
 void led( unsigned char n, unsigned char on ) {
     unsigned char c;
@@ -21,8 +22,3 @@ void leds( unsigned char on ) {
     write_max( SV, on );     
     old_led = on;
 }
-
-
-
-
-
