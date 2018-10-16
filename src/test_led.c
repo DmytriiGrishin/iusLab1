@@ -10,16 +10,15 @@ void delay ( unsigned long ms ) {
     }   
 }
 
-
 unsigned char left_circular_shift(unsigned char x, int n) {
-  return (x << n) | (x >> (8 - n));
+    return (x << n) | (x >> (8 - n));
 }
 unsigned char right_circular_shift(unsigned char x, int n) {
-  return (x >> n) | (x << (8 - n));
+    return (x >> n) | (x << (8 - n));
 }
 
 unsigned char invert(unsigned char c) {
-  return 255-c;
+    return 255 - c;
 }
 
 unsigned char read_dip() {
@@ -30,7 +29,7 @@ void main( void ) {
     const unsigned char left_leds_init = 0xC0;
     const unsigned char right_leds_init = 0x01;
     unsigned char left_leds = left_leds_init;
-    unsigned char right_leds = right_leds_init ;
+    unsigned char right_leds = right_leds_init;
     unsigned char leds_var = 0;
     unsigned char dip = 0;
     while( 1 ) {
