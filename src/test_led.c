@@ -18,7 +18,7 @@ unsigned char right_circular_shift(unsigned char x, int n) {
 }
 
 unsigned char invert(unsigned char c) {
-    return 255 - c;
+    return 255 ^ c;
 }
 
 unsigned char read_dip() {
